@@ -14,6 +14,17 @@ export interface Product {
 
 export const WHATSAPP_NUMBER = '923120258380';
 
+export function getImageUrl(path: string): string {
+  const base = import.meta.env.BASE_URL || '/';
+  const cleanBase = base.replace(/\/$/, '');
+  const encodedPath = path.replace(/ /g, '%20').replace(/\(/g, '%28').replace(/\)/g, '%29');
+  return `${cleanBase}${encodedPath}`;
+}
+
+export function getImageUrlEncoded(path: string): string {
+  return getImageUrl(path);
+}
+
 export const categories = [
   { id: 'all', label: 'All Products' },
   { id: 'soap', label: 'Soaps' },

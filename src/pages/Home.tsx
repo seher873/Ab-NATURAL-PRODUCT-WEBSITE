@@ -1,7 +1,7 @@
 import { ArrowRight, Leaf, Shield, Sparkles, Heart, Star, MessageCircle, Instagram } from 'lucide-react';
 import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
-import { Product } from '../data/products';
+import { Product, getImageUrl } from '../data/products';
 import ProductVideos from '../components/ProductVideos';
 
 interface HomeProps {
@@ -129,12 +129,12 @@ export default function Home({ onNavigate, onViewProduct, onBuyNow }: HomeProps)
           <div className="hidden md:block">
             <div className="grid grid-cols-2 gap-4">
               <img
-                src="/MULTY-SOAP.jpeg"
+                src={getImageUrl('/MULTY-SOAP.jpeg')}
                 alt="Herbal soap collection"
                 className="rounded-2xl h-48 w-full object-cover shadow-lg"
               />
               <img
-                src="/hnd-feet-cream_(1).jpeg"
+                src={getImageUrl('/hnd-feet-cream_(1).jpeg')}
                 alt="Hand & Feet cream"
                 className="rounded-2xl h-48 w-full object-cover shadow-lg mt-8"
               />
@@ -144,7 +144,7 @@ export default function Home({ onNavigate, onViewProduct, onBuyNow }: HomeProps)
                 className="rounded-2xl h-48 w-full object-cover shadow-lg -mt-4"
               />
               <img
-                src="/shampoo-fles-seed_.jpeg"
+                src={getImageUrl('/shampoo-fles-seed_.jpeg')}
                 alt="Flaxseed shampoo"
                 className="rounded-2xl h-48 w-full object-cover shadow-lg mt-4"
               />
@@ -168,7 +168,7 @@ export default function Home({ onNavigate, onViewProduct, onBuyNow }: HomeProps)
                 className="group relative overflow-hidden rounded-2xl aspect-square shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 <img
-                  src={cat.image}
+                   src={getImageUrl(cat.image)}
                   alt={cat.label}
                   className={`w-full h-full ${cat.id === 'face-wash' ? 'object-contain p-2 bg-emerald-50' : 'object-cover'} group-hover:scale-110 transition-transform duration-500`}
                   loading="lazy"

@@ -7,11 +7,18 @@ import ProductVideos from '../components/ProductVideos';
 interface ShopProps {
   onViewProduct: (product: Product) => void;
   onBuyNow?: (product: Product) => void;
+  searchQuery?: string;
+  setSearchQuery?: (query: string) => void;
 }
 
-export default function Shop({ onViewProduct, onBuyNow }: ShopProps) {
+export default function Shop({ onViewProduct, onBuyNow, searchQuery = '', setSearchQuery }: ShopProps) {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(searchQuery);
+
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    if (setSearchQuery) setSearchQuery(value);
+  };
 
   const filtered = products.filter((p) => {
     const matchCat = activeCategory === 'all' || p.category === activeCategory;
@@ -35,13 +42,13 @@ export default function Shop({ onViewProduct, onBuyNow }: ShopProps) {
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <div className="relative flex-1 max-w-md">
             <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:border-transparent"
-            />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={search}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:border-transparent"
+              />
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <SlidersHorizontal size={15} className="text-gray-400 flex-shrink-0" />

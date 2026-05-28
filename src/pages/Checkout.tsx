@@ -1,6 +1,6 @@
 import { ArrowLeft, Copy, Check, MessageCircle, Building2, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
-import { Product, WHATSAPP_NUMBER } from '../data/products';
+import { Product, WHATSAPP_NUMBER, getImageUrl } from '../data/products';
 
 interface CheckoutProps {
   product: Product;
@@ -45,7 +45,7 @@ export default function Checkout({ product, onBack }: CheckoutProps) {
               <div className="flex items-center gap-4">
                 <div className="w-20 h-20 rounded-2xl overflow-hidden bg-stone-100 flex-shrink-0 shadow-sm">
                   <img
-                    src={product.image}
+                    src={getImageUrl(product.image)}
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />

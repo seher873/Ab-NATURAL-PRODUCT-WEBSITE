@@ -15,9 +15,13 @@ type Page = 'home' | 'shop' | 'about' | 'contact' | 'product' | 'checkout';
 function App() {
   const [page, setPage] = useState<Page>('home');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const handleNavigate = (target: string) => {
+  const handleNavigate = (target: string, query?: string) => {
     setPage(target as Page);
+    if (query !== undefined) {
+      setSearchQuery(query);
+    }
   };
 
   const handleViewProduct = (product: Product) => {
@@ -55,7 +59,7 @@ function App() {
           <Home onNavigate={handleNavigate} onViewProduct={handleViewProduct} onBuyNow={handleBuyNow} />
         )}
         {page === 'shop' && (
-          <Shop onViewProduct={handleViewProduct} onBuyNow={handleBuyNow} />
+          <Shop onViewProduct={handleViewProduct} onBuyNow={handleBuyNow} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         )}
         {page === 'about' && <About />}
         {page === 'contact' && <Contact />}

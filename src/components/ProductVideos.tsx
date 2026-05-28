@@ -1,4 +1,5 @@
 import { Play } from 'lucide-react';
+import { getImageUrl } from '../data/products';
 
 const videos = [
   {
@@ -41,7 +42,7 @@ export default function ProductVideos() {
             >
               <div
                 className="aspect-[9/16] rounded-2xl flex flex-col items-center justify-center p-8 relative overflow-hidden bg-cover bg-center"
-                style={{ backgroundImage: `url('${video.image}')` }}
+                style={{ backgroundImage: `url('${getImageUrl(video.image)}')` }}
               >
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />

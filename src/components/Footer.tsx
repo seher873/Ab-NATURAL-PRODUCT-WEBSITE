@@ -1,4 +1,5 @@
 import { Phone, Mail, Instagram, Facebook, MessageCircle } from 'lucide-react';
+import { getImageUrl } from '../data/products';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -17,7 +18,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-9 h-9 rounded-full overflow-hidden shadow-md flex-shrink-0">
-                <img src="/Cards (1).jpeg" alt="Ab-Natural" className="w-full h-full object-cover" />
+                <img src={getImageUrl('/Cards (1).jpeg')} alt="Ab-Natural" className="w-full h-full object-cover" />
               </div>
               <span className="font-display font-bold text-xl text-white">
                 Ab<span className="text-emerald-400">Natural</span>

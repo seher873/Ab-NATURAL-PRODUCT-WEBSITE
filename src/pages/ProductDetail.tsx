@@ -1,5 +1,5 @@
 import { ArrowLeft, MessageCircle, CreditCard, CheckCircle2, Package, Star } from 'lucide-react';
-import { Product, getWhatsAppUrl } from '../data/products';
+import { Product, getWhatsAppUrl, getImageUrl } from '../data/products';
 
 interface ProductDetailProps {
   product: Product;
@@ -28,7 +28,7 @@ export default function ProductDetail({ product, onBack, onNavigate, onBuyNow }:
           <div className="space-y-4">
             <div className="aspect-square rounded-3xl overflow-hidden bg-white shadow-md">
               <img
-                src={product.image}
+                src={getImageUrl(product.image)}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />

@@ -1,14 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Instagram, Facebook } from 'lucide-react';
+import { Menu, X, Instagram, Facebook, Search } from 'lucide-react';
+import { getImageUrl } from '../data/products';
 
 interface NavbarProps {
   currentPage: string;
-  onNavigate: (page: string) => void;
+  onNavigate: (page: string, query?: string) => void;
 }
 
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [navSearch, setNavSearch] = useState('');
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (navSearch.trim()) {
+      onNavigate('shop', navSearch.trim());
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -42,7 +51,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             className="flex items-center gap-2 focus:outline-none"
           >
             <div className="w-9 h-9 rounded-full overflow-hidden shadow-md flex-shrink-0">
-              <img src="/Cards (1).jpeg" alt="Ab-Natural" className="w-full h-full object-cover" />
+              <img src={getImageUrl('/Cards (1).jpeg')} alt="Ab-Natural" className="w-full h-full object-cover" />
             </div>
             <span className="font-display font-bold text-xl text-gray-800 tracking-tight">
               Ab<span className="text-emerald-600">Natural</span>
@@ -63,6 +72,16 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 {link.label}
               </button>
             ))}
+            <form onSubmit={handleSearchSubmit} className="relative">
+              <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search..."
+                value={navSearch}
+                onChange={(e) => setNavSearch(e.target.value)}
+                className="w-40 lg:w-48 pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:border-transparent focus:bg-white transition-all"
+              />
+            </form>
             <div className="flex items-center gap-2 pl-2 border-l border-gray-200">
               <a
                 href="https://www.instagram.com/ab_naturals2506?igsh=MWxoMzMyd3l1Z2F0Zg=="
@@ -106,6 +125,16 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
       {isOpen && (
         <div className="md:hidden glass border-t border-gray-100">
           <div className="px-4 py-3 space-y-1">
+            <form onSubmit={handleSearchSubmit} className="relative pb-2">
+              <Search size={16} className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={navSearch}
+                onChange={(e) => setNavSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:border-transparent"
+              />
+            </form>
             {navLinks.map((link) => (
               <button
                 key={link.id}
