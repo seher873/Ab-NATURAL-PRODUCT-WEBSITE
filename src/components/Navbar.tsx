@@ -51,7 +51,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             className="flex items-center gap-2 focus:outline-none"
           >
             <div className="w-9 h-9 rounded-full overflow-hidden shadow-md flex-shrink-0">
-              <img src={getImageUrl('/Cards (1).jpeg')} alt="Ab-Natural" className="w-full h-full object-cover" />
+              <img src={getImageUrl('/logo.jpeg')} alt="Ab-Natural" className="w-full h-full object-cover" />
             </div>
             <span className="font-display font-bold text-xl text-gray-800 tracking-tight">
               Ab<span className="text-emerald-600">Natural</span>
